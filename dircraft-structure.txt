@@ -1,0 +1,101 @@
+app.json
+App.jsx
+
+assets/
+  adaptive-icon.png
+  favicon.png
+  icon.png
+  splash.png
+  images/
+    logo.png
+    onboarding/
+    cards/
+    placeholders/
+  icons/
+
+src/
+  navigation.js
+  theme.js
+  theme-mode.js
+
+  screens/
+    auth/
+      SplashScreen.jsx
+      OnboardingScreen.jsx
+      LoginScreen.jsx
+      ProfileSetupScreen.jsx
+
+    home/
+      HomeScreen.jsx
+      ZeroGroupHome.jsx
+      CommunityHome.jsx
+
+    groups/
+      GroupsListScreen.jsx
+      GroupDetailScreen.jsx
+      GroupChatScreen.jsx
+      CreateGroupScreen.jsx
+
+    cards/
+      MyCollectionScreen.jsx
+      AddCardScreen.jsx
+      CardDetailScreen.jsx
+      ShareCardScreen.jsx
+
+    auctions/
+      StartAuctionScreen.jsx
+      LiveBiddingScreen.jsx
+      AuctionDetailScreen.jsx
+      AuctionResultScreen.jsx
+
+    orders/
+      CheckoutScreen.jsx
+      OrderSummaryScreen.jsx
+      OrderStatusScreen.jsx
+
+    profile/
+      ProfileScreen.jsx
+      MyAuctionsScreen.jsx
+      MyOrdersScreen.jsx
+      SettingsScreen.jsx
+
+  components/
+    layout/
+      HeaderLayout.jsx
+      BottomBarLayout.jsx
+
+    ui/
+      Button.jsx
+      Input.jsx
+      Text.jsx
+      Loader.jsx
+      EmptyState.jsx
+
+    domain/
+      GroupCard.jsx
+      ChatMessage.jsx
+      AuctionCard.jsx
+      BidInput.jsx
+      OrderTimeline.jsx
+
+  data/
+    mockUsers.js
+    mockGroups.js
+    mockCards.js
+    mockAuctions.js
+    mockOrders.js
+
+  utils/
+    formatters.js
+    validators.js
+
+babel.config.js
+cesconfig.jsonc
+eslint.config.js
+global.css
+metro.config.js
+nativewind-env.d.ts
+package.json
+package-lock.json
+prettier.config.js
+tailwind.config.js
