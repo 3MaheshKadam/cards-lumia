@@ -21,9 +21,8 @@ export const AuthProvider = ({ children }) => {
             const token = await SecureStore.getItemAsync('userToken');
             if (token) {
                 const response = await auth.getProfile();
-                // Assuming response.data is the user object directly, or wrapped.
-                // Logically if /users/me returns the user profile:
-                setUser(response.data);
+                // Unwrap user object from response.data.user
+                setUser(response.data.user || response.data);
                 await initSocket();
             }
         } catch (e) {
@@ -47,7 +46,7 @@ export const AuthProvider = ({ children }) => {
             if (token) {
                 await SecureStore.setItemAsync('userToken', token);
                 const userResponse = await auth.getProfile();
-                setUser(userResponse.data);
+                setUser(userResponse.data.user || userResponse.data);
                 await initSocket();
             } else {
                 throw new Error("No access token received from server");
@@ -90,7 +89,7 @@ export const AuthProvider = ({ children }) => {
             if (token) {
                 await SecureStore.setItemAsync('userToken', token);
                 const userResponse = await auth.getProfile();
-                setUser(userResponse.data);
+                setUser(userResponse.data.user || userResponse.data);
                 await initSocket();
             } else {
                 // If no token, maybe we need to login manually. 

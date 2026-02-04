@@ -17,16 +17,23 @@ api.interceptors.request.use(
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
+    console.log('API Request Full URL:', `${config.baseURL || API_URL}${config.url}`);
+    console.log('API Request Config:', config.method.toUpperCase(), config.url, config.data);
     return config;
   },
   (error) => {
+    console.error('API Request Error:', error);
     return Promise.reject(error);
   }
 );
 
 api.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    console.log('API Response:', response.status, response.data);
+    return response;
+  },
   async (error) => {
+    console.error('API Error Response:', error.response?.status, error.response?.data);
     if (error.response && error.response.status === 401) {
       // Handle unauthorized access (e.g., redirect to login)
       // Potentially clear token
@@ -39,7 +46,7 @@ api.interceptors.response.use(
 );
 
 export const auth = {
-  login: (email, password) => api.post('/auth/login', { email, password }),
+  login: (email, password) => api.post('/auth/login', { loginIdentifier: email, password }),
   register: (username, email, password, plan = 'SILVER') => api.post('/auth/signup', { username, email, password, plan }),
   getProfile: () => api.get('/users/me'),
 };

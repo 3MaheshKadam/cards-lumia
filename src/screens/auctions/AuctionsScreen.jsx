@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, Image, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { auctions } from '../../services/api';
+import { auctions as auctionsApi } from '../../services/api';
 
 export default function AuctionsScreen({ navigation }) {
     const [auctions, setAuctions] = useState([]);
@@ -14,13 +14,9 @@ export default function AuctionsScreen({ navigation }) {
 
     const fetchAuctions = async () => {
         try {
-            const response = await auctions.list();
-            // Handle different possible response structures
-            const data = response.data;
-            if (Array.isArray(data)) {
-                setAuctions(data);
-            } else if (data && Array.isArray(data.auctions)) {
-                setAuctions(data.auctions);
+            const response = await auctionsApi.list();
+            if (response.data && response.data.auctions) {
+                setAuctions(response.data.auctions);
             } else {
                 setAuctions([]);
             }
